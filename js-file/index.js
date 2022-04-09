@@ -1,10 +1,9 @@
 const main = document.getElementById('main')
 const errorMessage = document.getElementById('errorMessage')
 const inputField = document.getElementById('input-field');
+
 const phoneLoad = () => {
-  const inputField = document.getElementById('input-field');
   const searchText = inputField.value;
-  const errorMessage = document.getElementById('errorMessage')
   if (!searchText) {
     errorMessage.innerText = "Write a brand name"
     main.innerHTML=''
@@ -23,14 +22,14 @@ const phoneLoad = () => {
 
 const phoneDisplay = (data) => {
   console.log(data)
+const first30phone =data.slice(0,30)
 if(data.length===0){
   errorMessage.innerText = "Please Try another phone..."
   main.innerHTML=''
   inputField.value = ''
 }
 else{
-  for (const phone of data) {
-    const main = document.getElementById('main')
+  for (const phone of first30phone) {
     const div = document.createElement('div');
     // div.classList.add("col-lg-4")
     div.classList.add("col-lg-3")
@@ -58,7 +57,6 @@ const phoneDetails = (slug) => {
 }
 const individualDelails = (data) => {
   console.log(data)
-  const main = document.getElementById('main')
   const div = document.createElement('div');
   main.innerHTML = ''
   div.innerHTML = `
@@ -66,6 +64,10 @@ const individualDelails = (data) => {
   <img src="${data.image}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title text-center">${data.brand}</h5>
+    <h5 class="text-center">${data.mainFeatures.storage}</h5>
+    <h5 class="text-center">${data.mainFeatures.displaySize}</h5>
+    <h5 class="text-center">${data.others.USB}</h5>
+    <h5 class="text-center">${data.others.WLAN}</h5>
     <p class="card-text text-center">${data.releaseDate}</p>  
   </div>
 </div>
